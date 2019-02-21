@@ -6,6 +6,7 @@
 h3 {
     text-align: center;
     margin-top: 5px;
+    margin-bottom: 10px;
 }
 #root {
     width: 100%;
@@ -14,20 +15,27 @@ h3 {
     padding: 10px;
     display: flex;
     align-items: stretch;
+    justify-content: space-around;
 }
 .column-container {
     border: 2px solid grey;
     border-radius: 5px;
-    padding: 10px;
+    width: 450px;
+    margin: 20px;
 }
 .tasks-list {
     list-style: none;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .task-container {
     margin: 5px;
     border:1px grey solid;
     padding: 2px 5px;
     border-radius: 5px;
+    width: 60%;
 }
 .task-container:active {
     background-color: lightgreen;
