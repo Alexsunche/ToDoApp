@@ -3,6 +3,9 @@ import Task from './task';
 import { Droppable } from 'react-beautiful-dnd';
 
 export default class Column extends React.Component {
+    onEdit = (data) => {
+        this.props.editData(data);
+    }
     render(){
         return (
             <div className = "column-container">
@@ -11,7 +14,7 @@ export default class Column extends React.Component {
                     {
                         (provided) => (
                             <ul className="tasks-list" {...provided.droppableProps} ref = {provided.innerRef}>
-                                { this.props.tasks.map((task, index) => <Task key={task.id} task={task} index = {index} />) }
+                                { this.props.tasks.map((task, index) => <Task key={task.id} task={task} onEdit = {this.onEdit} index = {index} column = {this.props.column.id} />) }
                                 {provided.placeholder}
                             </ul>
                         )
