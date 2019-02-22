@@ -14,7 +14,7 @@ export default class Column extends React.Component {
                     {
                         (provided) => (
                             <ul className="tasks-list" {...provided.droppableProps} ref = {provided.innerRef}>
-                                { this.props.tasks.map((task, index) => <Task key={task.id} task={task} onEdit = {this.onEdit} index = {index} column = {this.props.column.id} />) }
+                                { this.props.tasks.map((task, index) => <Task key={task.id} task={task} onEdit = {this.onEdit} index = {index} column = {this.props.column.id} stateData ={this.props.stateData} />) }
                                 {provided.placeholder}
                             </ul>
                         )

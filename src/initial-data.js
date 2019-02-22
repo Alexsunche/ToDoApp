@@ -1,4 +1,4 @@
-const initialData = {
+let initialData = {
     tasks: {
 
     },

@@ -1,5 +1,5 @@
 import React from 'react';
-import initialData from './initial-data';
+
 
 export default class Form extends React.Component {
 
@@ -27,13 +27,15 @@ export default class Form extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         let state = this.state;
-        initialData.tasks[state.titleValue] = {
+        let oldState = { ...this.props.stateData };
+        oldState.tasks[state.titleValue] = {
             id: state.titleValue,
             content: { ...state },
         };
-        initialData.columns['column-1'].taskIds.push(state.titleValue);
+        oldState.columns['column-1'].taskIds.unshift(state.titleValue);
         this.setState({ formState: !this.state.formState });
-        this.props.onAdd(initialData);
+        console.log(oldState);
+        this.props.onAdd(oldState);
     }
     formStateChange = (e) => {
         e.preventDefault();

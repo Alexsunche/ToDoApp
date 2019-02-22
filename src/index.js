@@ -12,7 +12,7 @@ import * as serviceWorker from './serviceWorker';
 class App extends React.Component {
     state = initialData;
 
-    onDragEnd = result => {
+    onDragEnd = (result) => {
         const { destination, source, draggableId } = result;
         if (!destination) return;
         if (
@@ -42,6 +42,7 @@ class App extends React.Component {
             };
             this.setState(newState);
             return;
+
         }
 
         const startTaskIds = Array.from(start.taskIds);
@@ -68,30 +69,29 @@ class App extends React.Component {
         };
 
         this.setState(newState);
-        initialData = {...this.state}
+
         return;
-    }
+    };
+
     addEvent = (data) => {
-        console.log(data);
         
         this.setState(data);
     }
     editData = (data) => {
-        console.log(data);
         
         this.setState(data);
     }
     render() {
         return (
             <React.Fragment>
-                <Form onAdd = {this.addEvent}/>
+                <Form onAdd = {this.addEvent} stateData ={this.state}/>
                 <DragDropContext onDragEnd={this.onDragEnd}>
                     {
                         this.state.columnOrder.map(columnId => {
                             const column = this.state.columns[columnId];
                             const tasks = column.taskIds.map(taskId => this.state.tasks[taskId]);
 
-                            return <Column key={columnId} column={column} tasks={tasks} editData = {this.editData} />
+                            return <Column key={columnId} column={column} tasks={tasks} editData = {this.editData} stateData ={this.state}/>
                         })
                     }
                 </DragDropContext>

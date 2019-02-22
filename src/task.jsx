@@ -14,6 +14,7 @@ export default class Task extends React.Component {
     editTask = (e) => {
         e.preventDefault();           
             let newTitle = this.state.newTitle;
+            let oldState = { ...this.props.stateData };
             let oldTitle = this.props.task.content.titleValue;
             let newDescription = this.state.newDescription;
             let oldId = this.props.task.id;
@@ -26,12 +27,13 @@ export default class Task extends React.Component {
                     imgPath: this.props.task.content.imgPath
                 }
             };
-            delete initialData.tasks[oldTitle];
-            initialData.tasks[newTitle] = {...newTitleObj};
-            let taskIndex = initialData.columns[this.props.column].taskIds.indexOf(oldId);
-            initialData.columns[this.props.column].taskIds[taskIndex] = newId;
-            console.log(initialData);
-            this.props.onEdit(initialData);     
+            delete oldState.tasks[oldTitle];
+            oldState.tasks[newTitle] = {...newTitleObj};
+            let taskIndex = oldState.columns[this.props.column].taskIds.indexOf(oldId);
+
+            
+            oldState.columns[this.props.column].taskIds[taskIndex] = newId;
+            this.props.onEdit(oldState);     
             this.setState({descriptionState : !this.state.descriptionState});
     }
 
