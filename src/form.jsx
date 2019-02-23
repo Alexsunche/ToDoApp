@@ -4,10 +4,11 @@ import React from 'react';
 export default class Form extends React.Component {
 
     state = {
-        titleValue: 'event name',
-        areaValue: 'description for event',
+        titleValue: '',
+        areaValue: '',
         imgPath: '',
-        formState: false
+        formState: false,
+        titlesArr: []
     }
 
     handleTitleChange = (event) => {
@@ -26,15 +27,27 @@ export default class Form extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        if(!this.state.titleValue){
+            alert("add title of your task");
+            return;
+        }
+        
         let state = this.state;
+        
+        if (state.titlesArr.indexOf(state.titleValue) >= 0) {
+            alert("Task with such name already exist");
+            return;
+        } 
+        state.titlesArr.push(state.titleValue);
+        
         let oldState = { ...this.props.stateData };
         oldState.tasks[state.titleValue] = {
             id: state.titleValue,
             content: { ...state },
         };
+        oldState.titlesArr = state.titlesArr;
         oldState.columns['column-1'].taskIds.unshift(state.titleValue);
         this.setState({ formState: !this.state.formState });
-        console.log(oldState);
         this.props.onAdd(oldState);
     }
     formStateChange = (e) => {
@@ -50,10 +63,10 @@ export default class Form extends React.Component {
         } else {
             addForm = <form onSubmit={this.handleSubmit} className="addEventForm">
                         <label>Enter event name
-                            <input type="text" value={this.state.titleValue} onChange={this.handleTitleChange} required />
+                            <input type="text" value={this.state.titleValue} onChange={this.handleTitleChange} placeholder="Your task" />
                         </label>
                         <label>Enter description for event
-                            <textarea value={this.state.areaValue} onChange={this.handleAreaChange} required />
+                            <textarea value={this.state.areaValue} onChange={this.handleAreaChange} placeholder="Your description" />
                         </label>
                         <input type="file" onChange={this.handleChoseImgChange} accept="image/jpeg,image/png,image/gif" />
                         <input type="submit" value="Add event" />

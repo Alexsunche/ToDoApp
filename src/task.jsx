@@ -15,6 +15,10 @@ export default class Task extends React.Component {
         e.preventDefault();           
             let newTitle = this.state.newTitle;
             let oldState = { ...this.props.stateData };
+            if(oldState.titlesArr.indexOf(newTitle) >= 0 || !newTitle){
+                alert('Task with such title already exist or empty string');
+                return;
+            }
             let oldTitle = this.props.task.content.titleValue;
             let newDescription = this.state.newDescription;
             let oldId = this.props.task.id;

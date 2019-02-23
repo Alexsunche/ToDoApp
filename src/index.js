@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Column from './column';
 import initialData from './initial-data';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext } from 'react-beautiful-dnd';
 import Form from './form';
 
 import * as serviceWorker from './serviceWorker';
@@ -105,4 +105,4 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 
 
-serviceWorker.unregister();
+serviceWorker.register();
