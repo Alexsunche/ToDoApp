@@ -16,7 +16,7 @@ h3 {
 #root {
     width: 100%;
     height: 100vh;
-    background: lightblue;
+    background-color: #EFF1F2;
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -26,8 +26,7 @@ h3 {
     
 }
 .column-container {
-    border: 2px solid grey;
-    border-radius: 5px;
+    background-color:cyan ;
     min-width: 20%;
     max-width: 450px;
     height: 50%;
@@ -47,10 +46,11 @@ h3 {
     display: flex;
     justify-content: space-between;
     margin: 5px;
-    border:1px grey solid;
     padding: 2px 5px;
     border-radius: 5px;
     width: 90%;
+    min-height: 70px;
+    background: #EFF1F2;
     
 }
 .task-container:active {
@@ -62,5 +62,32 @@ h3 {
     justify-content: space-around;
     align-items: center;
     width:100%;
-    height: 200px;
+    height: 240px;
+}
+input[type='file'] {
+    display: none;
+}
+
+.file {
+    width: 20%;
+    margin: 10px 0;
+    background:cyan;
+    border-radius: 4px;
+    padding:9px 11px ;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+.textTitle,.textArea {
+    width: 20%;
+    background: #FFFFFF;
+    border: 1px solid rgba(31,64,111,0.20);
+    border-radius: 4px;
+    padding:9px 11px ;
+    color: #000000;
+    outline:none;
+
+}
+.textArea {
+    height: 40px;
 }

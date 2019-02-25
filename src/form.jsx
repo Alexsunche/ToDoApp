@@ -58,18 +58,18 @@ export default class Form extends React.Component {
         let addForm;
         if (!this.state.formState) {
             addForm = <form  className="addEventForm">
-                            <input type="submit" value="Add event" onClick={this.formStateChange} /> 
+                            <input type="submit" value="Add event" onClick={this.formStateChange} className="file"/> 
                       </form>;
         } else {
             addForm = <form onSubmit={this.handleSubmit} className="addEventForm">
-                        <label>Enter event name
-                            <input type="text" value={this.state.titleValue} onChange={this.handleTitleChange} placeholder="Your task" />
+                            <input type="text" value={this.state.titleValue} onChange={this.handleTitleChange} placeholder="Your task" className="textTitle"/>
+                            <br/>
+                            <textarea value={this.state.areaValue} onChange={this.handleAreaChange} placeholder="Your description" className="textArea"/>
+                            <br/>
+                        <label className="file"> Add image
+                            <input type="file" onChange={this.handleChoseImgChange} accept="image/jpeg,image/png,image/gif" />
                         </label>
-                        <label>Enter description for event
-                            <textarea value={this.state.areaValue} onChange={this.handleAreaChange} placeholder="Your description" />
-                        </label>
-                        <input type="file" onChange={this.handleChoseImgChange} accept="image/jpeg,image/png,image/gif" />
-                        <input type="submit" value="Add event" />
+                        <input type="submit" value="Add event" className="file"/>
                     </form> ;
         }
 

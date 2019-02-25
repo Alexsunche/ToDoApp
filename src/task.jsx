@@ -7,6 +7,7 @@ export default class Task extends React.Component {
         descriptionState: true,
         newTitle: this.props.task.content.titleValue,
         newDescription: this.props.task.content.areaValue,
+        imgPath:""
 
   
     }
@@ -15,11 +16,13 @@ export default class Task extends React.Component {
         e.preventDefault();           
             let newTitle = this.state.newTitle;
             let oldState = { ...this.props.stateData };
+            let oldTitle = this.props.task.content.titleValue;
+            if (newTitle !== oldTitle) {
             if(oldState.titlesArr.indexOf(newTitle) >= 0 || !newTitle){
                 alert('Task with such title already exist or empty string');
                 return;
+                }
             }
-            let oldTitle = this.props.task.content.titleValue;
             let newDescription = this.state.newDescription;
             let oldId = this.props.task.id;
             let newId = newTitle;
@@ -28,7 +31,7 @@ export default class Task extends React.Component {
                 content: {
                     titleValue: newTitle,
                     areaValue: newDescription,
-                    imgPath: this.props.task.content.imgPath
+                    imgPath: this.state.imgPath ? this.state.imgPath:this.props.task.content.imgPath
                 }
             };
             delete oldState.tasks[oldTitle];
@@ -68,7 +71,9 @@ export default class Task extends React.Component {
             descriptionBox = <div className="event-description">
                                 <input type="text" placeholder="new title" value={this.state.newTitle} onChange={this.handleTitleChange}/>
                                 <textarea placeholder="new description" value={this.state.newDescription} onChange={this.handleAreaChange} />
+                            <label className="file"> Add image
                                 <input type="file" onChange={this.handleChoseImgChange} accept="image/jpeg,image/png,image/gif" />
+                            </label>
                                 <button onClick = {this.editTask}>OK</button>
                              </div>
         }
@@ -81,7 +86,7 @@ export default class Task extends React.Component {
                           {...provided.dragHandleProps} 
                           ref = {provided.innerRef}
                         >
-                            <img src={ this.props.task.content.imgPath} alt="noImg" height="65px" width="65px"/>
+                            <img src={ this.props.task.content.imgPath} alt="chose img" height="65px" width="65px"/>
                             {descriptionBox}
                         </li>
                     )
